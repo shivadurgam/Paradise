@@ -1,6 +1,10 @@
 var express = require('express');
+var Parse = require('parse/node').Parse;
 var router = express.Router();
 var _ = require('lodash');
+
+Parse.initialize('YMg0IjOSRw7FupnNTBZXs2LoiGxjcP4B5ruqOhYt', 'yfJ32G79PwYL0S1rjj8GsrjUCy0U7rQggAj742SA');
+var MenuItem = Parse.Object.extend('MenuItem');
 
 
 // define routes
@@ -25,6 +29,26 @@ router.get('/index', function (request, response) {
   });
 });
 
+router.get('/addItem', function(request, response){
+  var menuItem = new MenuItem();
+  menuItem.save({
+    title: "Chicken Biryani",
+    price: 12.5
+  }).then(function (response) { console.log(response); });
+  response.send('Hello World!');
+});
+
+router.get('/results', function(request, response){
+  var query = new Parse.Query(MenuItem);
+  query.equalTo("title", "Chicken Biryani");
+
+  query.find({
+    success: function (response) {
+      console.log(response);
+    }
+  });
+  response.send('Hello World!');
+});
 
 router.post('/add', function(request, response){
   var a = request.body.newItemFirstName;
