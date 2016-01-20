@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="css/agency.css">
+    <style>
+      .edit {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Edit here</h1>
+    <div class="container">
+      	<form action='/update/<%=item.id-1%>' method="post">
+      		First Name: <input type="text" name="newItemFirstName" value="<%= item.firstName%>"><br /><br />
+      		Last Name:  <input type="text" name="newItemLastName" value="<%= item.lastName%>" ><br /><br />
+      		<input type="submit">
+      	</form>
+    </div>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.js"></script>
+
+  </body>
+</html>
